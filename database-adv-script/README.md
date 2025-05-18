@@ -14,6 +14,9 @@ Master SQL joins by writing complex queries using different types of joins.
 3. **FULL OUTER JOIN:**  
    Write a query using a FULL OUTER JOIN to retrieve all users and all bookings, even if the user has no booking or a booking is not linked to a user.
 
+4. **NON-CORRELATED SUBQUERY:**  
+   Write a query using a non-correlated subquery to find all properties with an average review rating greater than 4.
+
 ---
 
 ## Example Queries
@@ -72,7 +75,34 @@ ON
 > LEFT JOIN users ON bookings.user_id = users.id;
 > ```
 
+
+
+### 4. Non-correlated Subquery – Properties with Average Rating > 4.0
+
+```sql
+SELECT *
+FROM properties
+WHERE id IN (
+    SELECT property_id
+    FROM reviews
+    GROUP BY property_id
+    HAVING AVG(rating) > 4.0
+);
+```
+
+### 5. Correlated Subquery – Users with More Than 3 Bookings
+
+```sql
+SELECT *
+FROM users u
+WHERE (
+    SELECT COUNT(*)
+    FROM bookings b
+    WHERE b.user_id = u.id
+) > 3;
+```
 ---
+
 
 ## Requirements
 
