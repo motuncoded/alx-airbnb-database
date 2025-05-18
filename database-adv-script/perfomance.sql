@@ -24,6 +24,10 @@ JOIN
     Property p ON b.property_id = p.property_id
 LEFT JOIN
     Payment pay ON pay.booking_id = b.booking_id;
+WHERE
+    b.status = 'confirmed'
+    AND pay.amount > 0;
+
 
 -- Performance Analysis:
 -- Run the following (PostgreSQL syntax shown, MySQL similar):
