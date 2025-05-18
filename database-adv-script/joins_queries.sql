@@ -14,8 +14,11 @@ ON
 
  -- left join
 SELECT
-    properties.*,
-    reviews.*
+    properties.id AS property_id,
+    properties.name AS property_name,
+    reviews.id AS review_id,
+    reviews.rating,
+    reviews.comment
 FROM
     properties
 LEFT JOIN
