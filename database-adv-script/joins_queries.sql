@@ -14,17 +14,16 @@ ON
 
  -- left join
 SELECT
-    properties.id AS property_id,
-    properties.name AS property_name,
-    reviews.id AS review_id,
-    reviews.rating,
-    reviews.comment
+    properties.*,
+    reviews.*
 FROM
     properties
 LEFT JOIN
     reviews
 ON
-    properties.id = reviews.property_id;
+    properties.id = reviews.property_id
+ORDER BY
+    properties.name;
 
 -- full outer join
 SELECT
